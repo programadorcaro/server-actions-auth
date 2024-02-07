@@ -29,7 +29,7 @@ export async function decrypt(input: string): Promise<any> {
   return payload;
 }
 
-export async function login(formData: FormData) {
+export async function login(prevState: any, formData: FormData) {
   // validate the payload
   const validatedFields = schema.safeParse({
     email: formData.get('email'),

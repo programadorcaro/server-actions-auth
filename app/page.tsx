@@ -1,17 +1,13 @@
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/lib";
+import { getSession, logout } from "@/lib";
+import LoginForm from "@/components/login-form";
 
 export default async function Page() {
   const session = await getSession();
   return (
     <section>
-      <form
-        action={login}
-      >
-        <input name="email" placeholder="Email" />
-        <br />
-        <button type="submit">Login</button>
-      </form>
+      <LoginForm />
+
       <form
         action={async () => {
           "use server";
