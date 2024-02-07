@@ -18,6 +18,8 @@ export default function LoginForm() {
     >
       <input name="email" placeholder="Email" />
       {emailerrorMessage ? <span>{emailerrorMessage}</span> : null}
+
+      <input name="password" placeholder="password" type="password" />
       <br />
       <button type="submit">Login</button>
     </form>

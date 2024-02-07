@@ -1,5 +1,6 @@
 "use server"
 
+import Cryptr from "cryptr";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -41,7 +42,16 @@ export async function login(prevState: any, formData: FormData) {
     }
   }
 
-  const user = { email: formData.get("email"), name: "John" };
+  const cryptr = new Cryptr('myTotallySecretKey');
+  const encryptedString = cryptr.encrypt(formData.get('password') as string);
+  const decryptedString = cryptr.decrypt(encryptedString);
+  const password = encryptedString;
+
+  const user = {
+    email: formData.get("email"),
+    password,
+    name: "John"
+  };
 
   // Create the session
   const expires = new Date(Date.now() + 10 * 1000);
