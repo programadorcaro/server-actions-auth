@@ -6,13 +6,9 @@ export default async function Page() {
   return (
     <section>
       <form
-        action={async (formData) => {
-          "use server";
-          await login(formData);
-          redirect("/");
-        }}
+        action={login}
       >
-        <input type="email" placeholder="Email" />
+        <input name="email" placeholder="Email" />
         <br />
         <button type="submit">Login</button>
       </form>
