@@ -44,7 +44,7 @@ export async function login(prevState: any, formData: FormData) {
 
   const cryptr = new Cryptr('myTotallySecretKey');
   const encryptedString = cryptr.encrypt(formData.get('password') as string);
-  const decryptedString = cryptr.decrypt(encryptedString);
+  // const decryptedString = cryptr.decrypt(encryptedString);
   const password = encryptedString;
 
   const user = {
