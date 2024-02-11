@@ -7,5 +7,6 @@ export default async function Db() {
     }
   })
 
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
+  return <h1 className='text-lg'>ola mundo</h1>
+  // <pre>{JSON.stringify(data, null, 2)}</pre>
 }
