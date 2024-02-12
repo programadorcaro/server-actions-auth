@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { Cloud, File } from 'lucide-react'
 import Dropzone from "react-dropzone";
 import { Progress } from '@/components/ui/progress';
+import { useUploadThing } from '@/lib/uploadthing';
 
 const UploadDropzone = () => {
   const [isUploading, setIsUploading] = useState<boolean | null>(null);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+
+  const { startUpload } = useUploadThing("mp3Uploader")
 
   const startSimulatedProgress = () => {
     // reset in case of previous upload
@@ -35,7 +38,20 @@ const UploadDropzone = () => {
         const progressInterval = startSimulatedProgress()
 
         // handle file uploading
-        await new Promise((resolve) => setTimeout(resolve, 4500));
+        // await new Promise((resolve) => setTimeout(resolve, 4500));
+        console.log({ acceptedFile })
+        // const res = await startUpload(acceptedFile)
+
+        if (!res) {
+          return console.log('something went wrong try again later')
+        }
+
+        const [fileResponse] = res
+        const key = fileResponse?.key
+
+        if (!key) {
+          return console.log('something went wrong try again later')
+        }
 
         clearInterval(progressInterval);
         setUploadProgress(100);
@@ -71,6 +87,8 @@ const UploadDropzone = () => {
                   <Progress value={uploadProgress} className='h-1 w-full bg-zinc-200' />
                 </div>
               ) : null}
+
+              <input {...getInputProps()} className="sr-only" type="file" id="dropzone-file" />
 
             </label>
           </div>
