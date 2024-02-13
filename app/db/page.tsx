@@ -1,3 +1,4 @@
+import AudioPlayer from '@/components/audio-player';
 import prisma from '@/lib/prisma';
 
 export default async function Db() {
@@ -7,6 +8,10 @@ export default async function Db() {
     }
   })
 
-  return <h1 className='text-lg'>ola mundo</h1>
-  // <pre>{JSON.stringify(data, null, 2)}</pre>
+  return (
+    <>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <AudioPlayer />
+    </>
+  )
 }

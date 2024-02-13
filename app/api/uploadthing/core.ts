@@ -1,3 +1,4 @@
+import prisma from "@/lib/prisma";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
@@ -11,7 +12,13 @@ export const ourFileRouter = {
       return {};
     })
     .onUploadComplete(async ({ metadata, file }) => {
-
+      await prisma.audios.create({
+        data: {
+          title: "sim como descobriu",
+          authorId: "0dcb6b27-aff0-4b23-a187-161df438ebdc",
+          url: file.url,
+        }
+      })
       return {};
     }),
 } satisfies FileRouter;

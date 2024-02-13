@@ -39,8 +39,7 @@ const UploadDropzone = () => {
 
         // handle file uploading
         // await new Promise((resolve) => setTimeout(resolve, 4500));
-        console.log({ acceptedFile })
-        // const res = await startUpload(acceptedFile)
+        const res = await startUpload(acceptedFile)
 
         if (!res) {
           return console.log('something went wrong try again later')
